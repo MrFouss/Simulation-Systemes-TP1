@@ -10,8 +10,9 @@ def playGame1(cardDealer):
     return False
 
 def playGame2(cardDealer):
-    cards = cardDealer.draw_cards(2)
-    if (cards[0].value == cards[1].value):
+    card1 = cardDealer.draw_card()
+    card2 = cardDealer.draw_card()
+    if (card1.value == card2.value):
         return True
     return False
 
@@ -55,8 +56,8 @@ game2Wins = 0
 game3Wins = 0
 game4Wins = 0
 game5Wins = 0
-for i in xrange(ITERATION_NBR):
-    if (i % 1000 == 0):
+for i in iter(range(ITERATION_NBR)):
+    if (i % 10000 == 0):
         print('iteration ' + str(i))
     game1Wins += 1 if playGame1(DEALER) else 0
     game2Wins += 1 if playGame2(DEALER) else 0
