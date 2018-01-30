@@ -32,20 +32,19 @@ def playGame4(cardDealer):
 
 def playGame5(cardDealer):
     cards = cardDealer.draw_cards(5)
-    sorted(cards, key=Card.get_rank)
+    cards.sort(key=Card.get_rank)
 
     lastCard = cards[0]
     currSeriesLength = 1
     maxSeriesLength = 1
     for i in range(1, 5):
         card = cards[i]
-        if (card.get_rank() > lastCard.get_rank()):
+        if (card.get_rank() == lastCard.get_rank()+1):
             currSeriesLength += 1
-            lastCard = card
             maxSeriesLength = max(currSeriesLength, maxSeriesLength)
         else:
             currSeriesLength = 1
-            lastCard = card
+        lastCard = card
 
     return maxSeriesLength >= 3
 
