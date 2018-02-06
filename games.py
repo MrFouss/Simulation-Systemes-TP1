@@ -32,21 +32,21 @@ def playGame4(cardDealer):
 
 def playGame5(cardDealer):
     cards = cardDealer.draw_cards(5)
-    cards.sort(key=Card.get_rank)
+    checkRank = [0]*13
 
-    lastCard = cards[0]
-    currSeriesLength = 1
-    maxSeriesLength = 1
-    for i in range(1, 5):
-        card = cards[i]
-        if (card.get_rank() == lastCard.get_rank()+1):
-            currSeriesLength += 1
-            maxSeriesLength = max(currSeriesLength, maxSeriesLength)
-        else:
-            currSeriesLength = 1
-        lastCard = card
-
-    return maxSeriesLength >= 3
+    for c in cards :
+        checkRank[c.get_rank()] += 1
+    
+    seriesLen = 0
+    for i in checkRank :
+        if (i > 0) :
+            seriesLen += 1
+            if (seriesLen >= 3) :
+                return True
+        else :
+            seriesLen = 0
+    
+    return False
 
 # simulation parameter values
 
